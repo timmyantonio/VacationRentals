@@ -10,6 +10,7 @@ function App() {
       <CssBaseline />
       <Box
         sx={{
+          px: 2,
           backgroundImage: `url(${cover})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -20,7 +21,6 @@ function App() {
         <Box paddingTop={12} />
         <Header />
         <Routes />
-        
       </Box>
     </>
   );

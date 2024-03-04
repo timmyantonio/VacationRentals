@@ -37,14 +37,14 @@ export default function Menu() {
           borderRadius: 8,
           width: 200,
           "&:hover": {
-            bgcolor: "secondary.light",
+            bgcolor: "primary.main",
             color: "white",
             border: "none",
           },
         }}
         variant={pathName == path ? "contained" : "outlined"}
       >
-        <Typography variant="caption" letterSpacing={2}>
+        <Typography fontWeight={800} variant="subtitle2" letterSpacing={2}>
           {label}
         </Typography>
       </Button>
