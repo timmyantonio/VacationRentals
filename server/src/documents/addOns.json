@@ -1,0 +1,12 @@
+[
+  {
+    "id": "se45sdf",
+    "bookingId": "sdfgasdf",
+    "withShuttleService": true,
+    "extraBeds": 1,
+    "breakfast": {
+      "numberOfAdults": 2,
+      "numberOfChildren": 1
+    }
+  }
+]

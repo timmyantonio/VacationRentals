@@ -1,0 +1,11 @@
+{
+  "home": "/home",
+  "payments": "/payments",
+  "bookings": "/bookings",
+  "guests": "/guests",
+  "admin": "/admin",
+  "addUnit": "/add-unit",
+  "maintenance": "/maintenance",
+  "fallout": "/fallout",
+  "unavailable": "/service-unavailable"
+}

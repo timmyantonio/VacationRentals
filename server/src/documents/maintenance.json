@@ -1,0 +1,24 @@
+{
+  "id": "asdf",
+  "unit_id": "B1F1R1",
+  "reported_date": "date",
+  "description": "ac repairs",
+  "completion_date": "date",
+  "severity": "major | critical | minor",
+  "jobItems": [
+    {
+      "id": "asdf",
+      "name": "labor",
+      "cost": 1000,
+      "paidDate": "date",
+      "invoiceNumber": "123kin12"
+    },
+    {
+      "id": "asdf",
+      "name": "parts",
+      "cost": 2000,
+      "paidDate": "date",
+      "invoiceNumber": "123kin12"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "units": [
+    {
+      "id": "B1F1R1",
+      "bldg_number": 1,
+      "flr_number": 1,
+      "rm_number": 1,
+      "status": "available",
+      "tenant_id": "",
+      "utilities": {
+        "electricity": "sub-metered",
+        "water": "sub-metered",
+        "withAC": true
+      },
+      "date_added": "2023-04-14T15:42:28.488Z"
+    },
+    {
+      "id": "B1F1R2",
+      "bldg_number": 1,
+      "flr_number": 1,
+      "rm_number": 2,
+      "status": "available",
+      "tenant_id": "",
+      "utilities": {
+        "electricity": "sub-metered",
+        "water": "sub-metered",
+        "withAC": true
+      },
+      "date_added": "2023-04-16T18:26:09.025Z"
+    }
+  ],
+  "maintenance": [
+    {
+      "id": "asdf",
+      "unit_id": "B1F1R1",
+      "reported_date": "date",
+      "description": "ac repairs",
+      "completion_date": "date",
+      "severity": "major | critical | minor",
+      "items": [
+        {
+          "id": "asdf",
+          "name": "labor",
+          "cost": 1000,
+          "paid_at": "date",
+          "invoice_number": "123kin12"
+        },
+        {
+          "id": "asdf",
+          "name": "parts",
+          "cost": 2000,
+          "paid_at": "date",
+          "invoice_number": "123kin12"
+        }
+      ]
+    }
+  ],
+  "tenants": [
+    {
+      "id": "asdf",
+      "unit_id": "B1F1R1",
+      "account-number": "date of signing the contract plus bldg_num-rm_number 04132311",
+      "occoupiers": {
+        "main": {
+          "personal_details": {
+            "title": "Mr",
+            "first_name": "John",
+            "middle_name": "G.",
+            "surname": "Smith",
+            "suffix": "Sr.",
+            "profession": "Engineer",
+            "mobile": "346324653465"
+          },
+          "source_of_income": "Employment",
+          "homeAddress": {
+            "houseNumber": "12",
+            "brgy": "tanaytay",
+            "municipality": "alaminos",
+            "province": "pangasinan"
+          }
+        },
+        "mate1": {
+          "personal_details": {
+            "title": "Mr",
+            "first_name": "John",
+            "middle_name": "G.",
+            "surname": "Smith",
+            "suffix": "Sr.",
+            "profession": "Engineer",
+            "mobile": "346324653465"
+          }
+        },
+        "mate2": {
+          "personal_details": {
+            "title": "Mr",
+            "first_dame": "John",
+            "middle_name": "G.",
+            "surname": "Smith",
+            "suffix": "Sr.",
+            "profession": "Engineer",
+            "mobile": "346324653465"
+          }
+        }
+      },
+      "clearance": {
+        "type": "police | barangay | recommendation letter",
+        "comments": "good citizen"
+      },
+      "contractid": "dfs456"
+    }
+  ],
+  "payments": [
+    {
+      "id": "asdf",
+      "account-number": "324345634",
+      "category": "DP | rent | utility | other services",
+      "amount": 2000,
+      "date": "date",
+      "name": "John",
+      "type": "cash",
+      "invoice_number": "bldg no. rm no. yyyymmdd+0000 then increment",
+      "comments": "paid in full"
+    }
+  ],
+  "leases": [
+    {
+      "id": "yyfd",
+      "tanant_id": "asdf",
+      "start_date": "January 1, 2021",
+      "end_date": "December 31, 2021",
+      "rent": 4500,
+      "late_payment_fee": 100,
+      "reservation": 1000,
+      "security_deposit": {
+        "amount": 8000,
+        "balance": 7000,
+        "is_cleared": false
+      }
+    }
+  ]
+}

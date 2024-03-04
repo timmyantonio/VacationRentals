@@ -1,0 +1,66 @@
+{
+  "CASH": {
+    "terms": {
+      "3 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "6 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "12 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      }
+    }
+  },
+  "BUSINESS": {
+    "terms": {
+      "3 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "6 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "12 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      }
+    }
+  },
+  "SALARY": {
+    "terms": {
+      "3 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "6 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "12 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      }
+    }
+  },
+  "PROPERTY": {
+    "terms": {
+      "3 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "6 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      },
+      "12 months": {
+        "interest": 0.1,
+        "penaltyCost": 10
+      }
+    }
+  }
+}

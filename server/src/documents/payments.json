@@ -1,0 +1,18 @@
+[
+  {
+    "id": "asdfad",
+    "bookingId": "sdfgasdf",
+    "description": "reservation",
+    "paymentDate": "date and time",
+    "paymentType": "card",
+    "amount": 3000
+  },
+  {
+    "id": "asdfads",
+    "bookingId": "sdfgasdf",
+    "description": "balance",
+    "paymentDate": "date and time",
+    "paymentType": "card",
+    "amount": 500
+  }
+]

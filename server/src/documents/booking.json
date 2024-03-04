@@ -1,0 +1,15 @@
+{
+  "_id": "asdsdf",
+  "guestId": "sadfa",
+  "type": "online|onsite",
+  "agentCode": 123456,
+  "checkInDate": "date and time",
+  "checkOutDate": "date and time",
+  "numberOfAdults": 2,
+  "numberOfChildren": 1,
+  "payments": [],
+  "addOns": [],
+  "isFullyPaid": true,
+  "isCancelled": true,
+  "amount": 3500
+}

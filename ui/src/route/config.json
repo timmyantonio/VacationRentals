@@ -1,0 +1,10 @@
+{
+  "home": "/",
+  "admin": "/admin",
+  "onboard": "/onboard",
+  "addUnit": "/add-unit",
+  "payment": "/payment",
+  "maintenance": "/maintenance",
+  "fallout": "/fallout",
+  "unavailable": "/service-unavailable"
+}

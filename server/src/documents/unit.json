@@ -1,0 +1,17 @@
+{
+  "id": "3sdfasdf",
+  "description": "gold",
+  "unitNumber": 8,
+  "floorNumber": 1,
+  "features": {
+    "bedType": {
+      "size": "single",
+      "isBunk": true
+    },
+    "withAc": true,
+    "withFridge": true,
+    "withTv": true
+  },
+  "cost": 5000,
+  "isOccupied": true
+}

@@ -1,0 +1,1077 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "HIRAM API",
+    "version": "v1"
+  },
+  "paths": {
+    "/debtors": {
+      "get": {
+        "summary": "Get all the debtors",
+        "tags": ["Debtors"],
+        "responses": {
+          "200": {
+            "description": "Returns all debtors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Debtor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/{id}": {
+      "get": {
+        "summary": "Get the debtor by its id",
+        "tags": ["Debtors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The debtor id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The debtor description by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Debtor"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the debtors by the id",
+        "tags": ["Debtors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The debtor id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Debtor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The debtor was updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Debtor"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The debtor was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "debtor not found",
+                  "status": 404,
+                  "additionalInfo": "more info about the response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The debtor was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Ops, something went wrong.",
+                  "status": 500,
+                  "additionalInfo": "more info about the response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/address/{did}/{aid}": {
+      "patch": {
+        "summary": "Update address",
+        "tags": ["Addresses"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "required": true,
+            "description": "The debtor id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "aid",
+            "required": true,
+            "description": "The addres id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IRequestAddress"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IAddress"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/address/{did}": {
+      "post": {
+        "summary": "Add new address",
+        "tags": ["Addresses"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "description": "The debption address id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IAddress"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IAddress"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all the addresses by debtor id",
+        "tags": ["Addresses"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "required": true,
+            "discription": "The debtor id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all address for a specific debtor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IAddress"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/name/{did}": {
+      "patch": {
+        "summary": "Update name",
+        "tags": ["Debtors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "required": true,
+            "description": "The debtor id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IName"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/employment/{did}": {
+      "patch": {
+        "summary": "Update employment",
+        "tags": ["Debtors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "required": true,
+            "description": "The debtor id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IEmployment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/dob/{did}": {
+      "patch": {
+        "summary": "Update DOB",
+        "tags": ["Debtors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "required": true,
+            "description": "The debtor id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IDob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debtors/contact/{did}": {
+      "patch": {
+        "summary": "Update contact",
+        "tags": ["Debtors"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "did",
+            "required": true,
+            "description": "The debtor id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "mobile": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments": {
+      "get": {
+        "summary": "Get all the payments",
+        "tags": ["Payments"],
+        "responses": {
+          "200": {
+            "description": "Returns all payments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IPayment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments/{loan_id}": {
+      "get": {
+        "summary": "Get the payment by its id",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "loan_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The loan id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The payment description by loan id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPayment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The payment was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "payment not found",
+                  "status": 404,
+                  "additionalInfo": "more info about the response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments/new": {
+      "post": {
+        "summary": "Add new payment",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "loan_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The loan id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ITransaction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITransaction"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/officers": {
+      "get": {
+        "summary": "Get all the officers",
+        "tags": ["Officers"],
+        "responses": {
+          "200": {
+            "description": "Returns all officers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IRole"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/officers/{id}": {
+      "get": {
+        "summary": "Get the officer by its id",
+        "tags": ["Officers"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The officer id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The officer description by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IRole"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The officer was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "officer not found",
+                  "status": 404,
+                  "additionalInfo": "more info about the response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/officers/login": {
+      "post": {
+        "summary": "Officer login",
+        "tags": ["Officers"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ILogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans": {
+      "get": {
+        "summary": "Get all the loans",
+        "tags": ["Loans"],
+        "responses": {
+          "200": {
+            "description": "Returns all loans",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ILoan"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/{id}": {
+      "get": {
+        "summary": "Get the loan by its id",
+        "tags": ["Loans"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The loan id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all loans",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ILoan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/new": {
+      "post": {
+        "summary": "Add new loan",
+        "tags": ["Loans"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/INewLoan"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/INewLoan"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Debtor": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "name": {
+            "$ref": "#/components/schemas/IName"
+          },
+          "dob": {
+            "$ref": "#/components/schemas/IDob"
+          },
+          "address": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IAddress"
+            }
+          },
+          "maritalStatus": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "employment": {
+            "$ref": "#/components/schemas/IEmployment"
+          },
+          "comments": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "address",
+          "comments",
+          "dob",
+          "email",
+          "employment",
+          "maritalStatus",
+          "mobile",
+          "name",
+          "title"
+        ]
+      },
+      "IName": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "suffix": {
+            "type": "string"
+          }
+        },
+        "required": ["firstName", "surname"]
+      },
+      "IDob": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "number"
+          },
+          "month": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          }
+        },
+        "required": ["day", "month", "year"]
+      },
+      "IAddress": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "houseNumber_alias": {
+            "type": "string"
+          },
+          "barangay": {
+            "type": "string"
+          },
+          "town_city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "length": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "barangay",
+          "comments",
+          "houseNumber_alias",
+          "length",
+          "province",
+          "town_city"
+        ]
+      },
+      "IRequestAddress": {
+        "type": "object",
+        "properties": {
+          "houseNumber_alias": {
+            "type": "string"
+          },
+          "barangay": {
+            "type": "string"
+          },
+          "town_city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "length": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "barangay",
+          "comments",
+          "houseNumber_alias",
+          "length",
+          "province",
+          "town_city"
+        ]
+      },
+      "IEmployment": {
+        "type": "object",
+        "properties": {
+          "presentEmployer": {
+            "type": "string"
+          },
+          "occupation": {
+            "type": "string"
+          },
+          "yearsOfExperience": {
+            "type": "string"
+          },
+          "grossMonthlyIncome": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "grossMonthlyIncome",
+          "occupation",
+          "presentEmployer",
+          "yearsOfExperience"
+        ]
+      },
+      "ITransaction": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "collector_id": { "type": "string" },
+          "date": { "type": "string", "format": "date-time" },
+          "amount": { "type": "number" },
+          "comment": { "type": "string" }
+        },
+        "required": ["_id", "amount", "collector_id", "comment", "date"]
+      },
+      "IRole": {
+        "type": "object",
+        "properties": {
+          "isAgent": {
+            "type": "boolean"
+          },
+          "isBg": {
+            "type": "boolean"
+          },
+          "isCollector": {
+            "type": "boolean"
+          }
+        },
+        "required": ["isAgent", "isBg", "isCollector"]
+      },
+      "IOfficer": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "number"
+          },
+          "role": {
+            "$ref": "#/components/schemas/IRole"
+          },
+          "joinDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvedLoans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "declinedLoans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": ["active", "inactive"],
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "firstName",
+          "joinDate",
+          "pin",
+          "role",
+          "status",
+          "surname"
+        ]
+      },
+      "IPayment": {
+        "type": "object",
+        "properties": {
+          "loan_id": { "type": "string" },
+          "rate": { "type": "string" },
+          "frequency": { "enum": ["bi-weekly", "monthly"], "type": "string" },
+          "transactions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ITransaction" }
+          },
+          "status": { "enum": ["active", "cleared"], "type": "string" },
+          "balance": { "type": "number" }
+        },
+        "required": [
+          "_id",
+          "balance",
+          "frequency",
+          "loan_id",
+          "rate",
+          "status",
+          "transactions"
+        ]
+      },
+      "INewLoan": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "officerId": { "type": "string" },
+          "debtor": { "$ref": "#/components/schemas/IDebtor" },
+          "payment": { "$ref": "#/components/schemas/IPayment" },
+          "date": { "type": "string", "format": "date-time" },
+          "amount": { "type": "number" },
+          "promise": {
+            "enum": ["12 months", "3 months", "6 months"],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "approved",
+              "cleared",
+              "declined",
+              "submitted",
+              "verified"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "amount",
+          "date",
+          "debtor",
+          "officerId",
+          "payment",
+          "promise",
+          "status"
+        ]
+      },
+      "ILoan": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "agent_id": { "type": "string" },
+          "bgOfficer": { "type": "string" },
+          "debtor_id": { "type": "string" },
+          "payment_id": { "type": "string" },
+          "date": { "type": "string", "format": "date-time" },
+          "amount": { "type": "number" },
+          "promise": { "type": "string" },
+          "status": {
+            "enum": [
+              "active",
+              "approved",
+              "cleared",
+              "declined",
+              "submitted",
+              "verified"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "agent_id",
+          "amount",
+          "bgOfficer",
+          "date",
+          "debtor_id",
+          "payment_id",
+          "promise",
+          "status"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "number"
+          },
+          "additionalInfo": {
+            "type": "object"
+          }
+        }
+      },
+      "ILogin": {
+        "type": "object",
+        "properties": {
+          "surname": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

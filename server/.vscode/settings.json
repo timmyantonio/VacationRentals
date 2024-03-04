@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/ba812592-fa39-4f05-9fd2-be0695eae590/AppServices/subscriptions/ba812592-fa39-4f05-9fd2-be0695eae590/resourceGroups/DefaultResourceGroup-SUK/providers/Microsoft.Web/sites/hiram-test-api",
+  "appService.deploySubpath": "."
+}
