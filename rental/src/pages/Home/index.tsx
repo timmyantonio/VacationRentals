@@ -1,9 +1,11 @@
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+
+import PageName from "../../components/PageName";
 
 function Home() {
   return (
     <>
-      <Typography variant="h3">Home page</Typography>
+      <PageName label="Home page" />;
     </>
   );
 }

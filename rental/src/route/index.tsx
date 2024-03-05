@@ -27,7 +27,11 @@ function Routes() {
       />
       <Route
         path={pathConfig.admin}
-        element={<Typography variant="h3">Admin Page</Typography>}
+        element={
+          <Typography textAlign="center" variant="h3">
+            Admin Page
+          </Typography>
+        }
       />
     </DomRoutes>
   );

@@ -1,10 +1,11 @@
+import PageName from "../../components/PageName";
 import React from "react";
 import { Typography } from "@mui/material";
 
 function Payments() {
   return (
     <>
-      <Typography variant="h3">Payment page</Typography>
+      <PageName label="Payments page" />
     </>
   );
 }
