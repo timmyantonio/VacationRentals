@@ -35,14 +35,15 @@ export default function Menu() {
         sx={{
           textTransform: "none",
           borderRadius: 8,
+          borderColor: "white",
+          color: "white",
           width: 200,
           "&:hover": {
-            bgcolor: "primary.main",
             color: "white",
             border: "none",
           },
         }}
-        variant={pathName == path ? "contained" : "outlined"}
+        variant={pathName == path ? "outlined" : "text"}
       >
         <Typography fontWeight={800} variant="subtitle2" letterSpacing={2}>
           {label}

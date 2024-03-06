@@ -2,7 +2,7 @@ import { IFeature } from "./Feature";
 
 export interface IUnit {
   id: string;
-  description: string;
+  description: "standard" | "extra" | "double";
   unitNumber: number;
   floorNumber: number;
   features: IFeature[];

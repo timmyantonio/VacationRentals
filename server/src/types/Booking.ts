@@ -4,6 +4,7 @@ import { IPayment } from "./Payment";
 export interface IBooking {
   _id: string;
   guestId: string;
+  unitId: string;
   type: "online" | "onsite";
   agentCode?: number;
   checkInDate: Date;

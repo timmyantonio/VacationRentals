@@ -1,12 +1,24 @@
-import { Box, Button, ButtonGroup, Typography } from "@mui/material";
+import "react-datepicker/dist/react-datepicker.css";
 
-import PageName from "../../components/PageName";
-import React from "react";
+import { Box, Button, ButtonGroup, Typography } from "@mui/material";
+import React, { useState } from "react";
+
+import NewBooking from "./NewBooking";
 
 function Bookings() {
+  const [selectedOption, setSelectedOption] = useState(2);
+
+  const OnNewClick = () => {
+    setSelectedOption(1);
+  };
+  const OnActiveClick = () => {
+    setSelectedOption(2);
+  };
+  const OnCompletedClick = () => {
+    setSelectedOption(3);
+  };
   return (
     <>
-      {/* <PageName label="Bookings page" /> */}
       <Box sx={{ textAlign: "center", px: "38%" }}>
         <ButtonGroup
           size="small"
@@ -15,17 +27,51 @@ function Bookings() {
           variant="text"
           disableRipple
         >
-          <Button sx={{ "&:hover": { bgcolor: "#94d3ac", color: "white" } }}>
-            <Typography>New</Typography>
+          <Button
+            onClick={OnNewClick}
+            sx={{
+              bgcolor: `${selectedOption == 1 ? "#4AC2DA" : null}`,
+              "&:hover": { bgcolor: "#4AC2DA", color: "white" },
+            }}
+          >
+            <Typography
+              color={selectedOption == 1 ? "white" : "primary.main"}
+              variant="body2"
+            >
+              New
+            </Typography>
           </Button>
-          <Button sx={{ "&:hover": { bgcolor: "#94d3ac", color: "white" } }}>
-            <Typography>Active</Typography>
+          <Button
+            onClick={OnActiveClick}
+            sx={{
+              bgcolor: `${selectedOption == 2 ? "#4AC2DA" : null}`,
+              "&:hover": { bgcolor: "#4AC2DA", color: "white" },
+            }}
+          >
+            <Typography
+              color={selectedOption == 2 ? "white" : "primary.main"}
+              variant="body2"
+            >
+              Active
+            </Typography>
           </Button>
-          <Button sx={{ "&:hover": { bgcolor: "#94d3ac", color: "white" } }}>
-            <Typography>Completed</Typography>
+          <Button
+            onClick={OnCompletedClick}
+            sx={{
+              bgcolor: `${selectedOption == 3 ? "#4AC2DA" : null}`,
+              "&:hover": { bgcolor: "#4AC2DA", color: "white" },
+            }}
+          >
+            <Typography
+              color={selectedOption == 3 ? "white" : "primary.main"}
+              variant="body2"
+            >
+              Completed
+            </Typography>
           </Button>
         </ButtonGroup>
       </Box>
+      <NewBooking />
     </>
   );
 }
