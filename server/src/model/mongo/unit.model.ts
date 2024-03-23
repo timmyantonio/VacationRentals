@@ -5,6 +5,8 @@ const unitSchema = new mongoose.Schema({
   _id: {
     type: String,
   },
+  locationCode: String,
+  registeredDate: Date,
   description: {
     type: String,
     required: true,

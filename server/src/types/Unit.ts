@@ -7,4 +7,6 @@ export interface IUnit {
   floorNumber: number;
   feature: IFeature;
   status: "booked" | "occupied" | "available";
+  dateRegistered: Date;
+  locationCode: string;
 }

@@ -1,8 +1,15 @@
+import {
+  getAll,
+  registerUnit,
+  updateUnit,
+} from "../controllers/units-controller";
+
 import express from "express";
-import { registerUnit } from "../controllers/units-controller";
 
 const router = express.Router();
 
 export default router;
 
+router.get("/", getAll);
 router.post("/", registerUnit);
+router.patch("/:_id", updateUnit);
