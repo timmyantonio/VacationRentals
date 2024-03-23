@@ -17,6 +17,7 @@ import Modal from "../../components/Modal";
 import { NumericFormat } from "react-number-format";
 import ProcessIcon from "@mui/icons-material/Publish";
 import { unit_price } from "../../Config/pricing.json";
+import { useNewBookingMutation } from "../../store/api";
 
 function PaymentModal({
   formData,
@@ -27,6 +28,7 @@ function PaymentModal({
   setShowModal: (value: boolean) => void;
   showModal: boolean;
 }) {
+  const [newBooking, result] = useNewBookingMutation();
   const [selectedPaymentOption, setSelectedPaymentOption] = useState("now");
   const [paymentReference, setPaymentReference] = useState("");
   const [error, setError] = useState(false);
@@ -37,6 +39,8 @@ function PaymentModal({
       setError(false);
       console.log("Processing!");
       console.log(formData);
+      newBooking({...formData})
+      
     }
   };
 

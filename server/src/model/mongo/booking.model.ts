@@ -39,10 +39,6 @@ const bookingSchema = new mongoose.Schema({
   addOns: {
     type: [
       {
-        id: {
-          required: true,
-          type: String,
-        },
         withShuttleService: {
           required: true,
           type: "Boolean",

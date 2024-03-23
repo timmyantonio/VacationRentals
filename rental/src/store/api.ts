@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IBooking } from "./../../../server/src/types/Booking";
+import { IBooking } from "../types/Booking";
 
 export const api = createApi({
   reducerPath: "bookingApi",
@@ -13,6 +13,17 @@ export const api = createApi({
       query: () => "/bookings",
       providesTags: ["Bookings"],
     }),
+    newBooking: build.mutation<
+      { bookingId: string; message: string },
+      IBooking
+    >({
+      query: (payload) => ({
+        url: "/bookings",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["Bookings"],
+    }),
   }),
 });
-export const { useBookingsQuery } = api;
+export const { useBookingsQuery, useNewBookingMutation } = api;
