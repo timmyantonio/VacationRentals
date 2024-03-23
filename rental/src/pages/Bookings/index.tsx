@@ -1,6 +1,7 @@
 import "react-datepicker/dist/react-datepicker.css";
+import "../Bookings/payment-modal.css";
 
-import { Box, Button, ButtonGroup, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 import NewBooking from "./NewBooking";
@@ -11,63 +12,73 @@ function Bookings() {
   const OnNewClick = () => {
     setSelectedOption(1);
   };
-  const OnActiveClick = () => {
+  const OnPendingClick = () => {
     setSelectedOption(2);
   };
-  const OnCompletedClick = () => {
+  const OnActiveClick = () => {
     setSelectedOption(3);
   };
+  const OnCompletedClick = () => {
+    setSelectedOption(4);
+  };
+  const OnCancelledClick = () => {
+    setSelectedOption(5);
+  };
+
   return (
     <>
-      <Box sx={{ textAlign: "center", px: "38%" }}>
+      <Box sx={{ textAlign: "center", px: "30%" }}>
         <ButtonGroup
           size="small"
           fullWidth
           disableElevation
-          variant="text"
+          variant="outlined"
           disableRipple
         >
           <Button
+            variant={selectedOption == 1 ? "contained" : "text"}
             onClick={OnNewClick}
             sx={{
-              bgcolor: `${selectedOption == 1 ? "#4AC2DA" : null}`,
-              "&:hover": { bgcolor: "#4AC2DA", color: "white" },
+              "&:hover": { color: "white", bgcolor: "primary.light" },
             }}
           >
-            <Typography
-              color={selectedOption == 1 ? "white" : "primary.main"}
-              variant="body2"
-            >
-              New
-            </Typography>
+            <Typography variant="body2">New</Typography>
           </Button>
           <Button
+            variant={selectedOption == 2 ? "contained" : "text"}
+            onClick={OnPendingClick}
+            sx={{
+              "&:hover": { color: "white", bgcolor: "primary.light" },
+            }}
+          >
+            <Typography variant="body2">Pending</Typography>
+          </Button>
+          <Button
+            variant={selectedOption == 3 ? "contained" : "text"}
             onClick={OnActiveClick}
             sx={{
-              bgcolor: `${selectedOption == 2 ? "#4AC2DA" : null}`,
-              "&:hover": { bgcolor: "#4AC2DA", color: "white" },
+              "&:hover": { color: "white", bgcolor: "primary.light" },
             }}
           >
-            <Typography
-              color={selectedOption == 2 ? "white" : "primary.main"}
-              variant="body2"
-            >
-              Active
-            </Typography>
+            <Typography variant="body2">Active</Typography>
           </Button>
           <Button
+            variant={selectedOption == 4 ? "contained" : "text"}
             onClick={OnCompletedClick}
             sx={{
-              bgcolor: `${selectedOption == 3 ? "#4AC2DA" : null}`,
-              "&:hover": { bgcolor: "#4AC2DA", color: "white" },
+              "&:hover": { color: "white", bgcolor: "primary.light" },
             }}
           >
-            <Typography
-              color={selectedOption == 3 ? "white" : "primary.main"}
-              variant="body2"
-            >
-              Completed
-            </Typography>
+            <Typography variant="body2">Completed</Typography>
+          </Button>
+          <Button
+            variant={selectedOption == 5 ? "contained" : "text"}
+            onClick={OnCancelledClick}
+            sx={{
+              "&:hover": { color: "white", bgcolor: "primary.light" },
+            }}
+          >
+            <Typography variant="body2">Cancelled</Typography>
           </Button>
         </ButtonGroup>
       </Box>

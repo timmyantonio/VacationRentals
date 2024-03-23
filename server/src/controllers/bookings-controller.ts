@@ -16,6 +16,7 @@ export const addBooking = async (
   let newBooking;
   try {
     body._id = nanoid();
+    body.status = body.isFullyPaid ? "active" : "pending";
     newBooking = new Booking(body);
     await newBooking.save();
   } catch (err) {

@@ -1,0 +1,9 @@
+.MuiOutlinedInput-notchedOutline > legend > span {
+  padding-right: 0px;
+  margin-right: -0.5ch;
+}
+.MuiFormLabel-root {
+  span {
+    display: none;
+  }
+}

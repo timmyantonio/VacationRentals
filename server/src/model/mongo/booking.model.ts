@@ -4,17 +4,33 @@ const bookingSchema = new mongoose.Schema({
   _id: {
     type: String,
   },
-  guestId: String,
-  unitId: String,
+  guestId: {
+    type: String,
+    required: true,
+  },
+  unitId: {
+    type: String,
+    required: true,
+  },
   type: {
     type: String,
     required: true,
     enum: ["online", "onsite"],
   },
   agentCode: Number,
-  checkInDate: { required: true, type: Date, default: Date.now },
+  planDate: { required: true, type: Date },
+  numberOfDays: {
+    type: Number,
+    required: true,
+    min: 1,
+  },
+  checkInDate: Date,
   checkOutDate: Date,
-  numberOfAdults: Number,
+  numberOfAdults: {
+    type: Number,
+    required: true,
+    min: 1,
+  },
   numberOfChildren: Number,
   payments: {
     type: [String],
@@ -49,8 +65,17 @@ const bookingSchema = new mongoose.Schema({
     ],
     default: [],
   },
-  isFullyPaid: Boolean,
-  isCancelled: Boolean,
+  isFullyPaid: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  isCheckedIn: Boolean,
+  status: {
+    type: String,
+    required: true,
+    enum: ["pending", "active", "completed", "cancelled"],
+  },
   amount: Number,
 });
 

@@ -21,7 +21,7 @@ function Header() {
         <Button
           disableRipple
           sx={{ textTransform: "none" }}
-          endIcon={<LogoutIcon color="secondary" style={{ fontSize: 25 }} />}
+          endIcon={<LogoutIcon color="error" style={{ fontSize: 25 }} />}
         >
           <Typography
             color="white"
