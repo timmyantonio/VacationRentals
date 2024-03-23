@@ -409,7 +409,7 @@ function NewBooking() {
             </Grid>
           </Box>
 
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ width: "25%" }}>
             <FormControl fullWidth>
               <InputLabel id="title-label">
                 <Typography

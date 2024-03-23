@@ -82,7 +82,7 @@ function Bookings() {
           </Button>
         </ButtonGroup>
       </Box>
-      <NewBooking />
+      {selectedOption == 1 && <NewBooking />}
     </>
   );
 }
