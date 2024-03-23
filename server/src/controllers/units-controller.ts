@@ -72,7 +72,6 @@ export const updateUnit = async (
 ) => {
   const _id: string = req.params._id;
   const body = req.body as Partial<IUnit>;
-  console.log(_id);
   let unit;
   try {
     unit = await Unit.findById(_id).exec();
@@ -85,9 +84,6 @@ export const updateUnit = async (
     }
     unit?.set(body);
     await unit?.save();
-
-    res.status(200);
-    res.json({ message: "updated successfully." });
   } catch (err) {
     const error = new HttpError(
       "Error occurred while updating unit details.",
@@ -98,4 +94,37 @@ export const updateUnit = async (
     );
     return next(error);
   }
+  res.status(200);
+  res.json({ message: "updated successfully." });
+};
+
+export const getById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const _id: string = req.params._id;
+
+  let unit;
+  try {
+    unit = await Unit.findById(_id).exec();
+    if (!unit) {
+      const error = new HttpError(
+        `Unable to find the unit with id - ${_id}`,
+        404
+      );
+      return next(error);
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Error occurred while fetching unit details.",
+      500,
+      {
+        err,
+      }
+    );
+    return next(error);
+  }
+  res.status(200);
+  res.json(unit);
 };
