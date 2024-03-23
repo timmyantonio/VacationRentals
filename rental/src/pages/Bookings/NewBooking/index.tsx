@@ -42,7 +42,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 function NewBooking() {
   const [selectedUnit, setSelectedUnit] = useState<
-    "select" | "regular" | "double" | "extra"
+    "select" | "standard" | "double" | "extra"
   >("select");
   const defaultValues: FormType = {
     title: "",
@@ -71,7 +71,7 @@ function NewBooking() {
     unitType: yup
       .string()
       .oneOf(
-        ["regular", "double", "extra"],
+        ["standard", "double", "extra"],
         "Please select one of the options."
       ),
     mobile: yup.string().required("This field is required."),
@@ -376,9 +376,9 @@ function NewBooking() {
                             -- Select --
                           </Typography>
                         </MenuItem>
-                        <MenuItem value="regular">
+                        <MenuItem value="standard">
                           <Typography fontWeight={800} textAlign="center">
-                            Regular
+                            Standard
                           </Typography>
                         </MenuItem>
                         <MenuItem value="double">

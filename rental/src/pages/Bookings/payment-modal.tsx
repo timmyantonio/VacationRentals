@@ -11,13 +11,17 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import {
+  useNewBookingMutation,
+  useNewGuestMutation,
+  useUnitsQuery,
+} from "../../store/api";
 
 import { FormType } from "../../types/FormType";
 import Modal from "../../components/Modal";
 import { NumericFormat } from "react-number-format";
 import ProcessIcon from "@mui/icons-material/Publish";
 import { unit_price } from "../../Config/pricing.json";
-import { useNewBookingMutation } from "../../store/api";
 
 function PaymentModal({
   formData,
@@ -28,9 +32,20 @@ function PaymentModal({
   setShowModal: (value: boolean) => void;
   showModal: boolean;
 }) {
-  const [newBooking, result] = useNewBookingMutation();
+  const [newBooking, bookingResult] = useNewBookingMutation();
+  const [newGuest, newGuestResult] = useNewGuestMutation();
+  const {
+    data: allUnits,
+    isLoading: unitDataLoading,
+    error: unitError,
+  } = useUnitsQuery();
+
+  const offeredUnit = allUnits?.find(
+    (u) => u.status === "available" && u.description === formData.unitType
+  );
   const [selectedPaymentOption, setSelectedPaymentOption] = useState("now");
   const [paymentReference, setPaymentReference] = useState("");
+  const [guestId, setGuestId] = useState("");
   const [error, setError] = useState(false);
   const handleProcess = () => {
     if (selectedPaymentOption === "now" && paymentReference.trim() == "") {
@@ -39,8 +54,32 @@ function PaymentModal({
       setError(false);
       console.log("Processing!");
       console.log(formData);
-      newBooking({...formData})
-      
+
+      newGuest({
+        ...formData,
+        joinedDate: new Date(),
+        contact: { mobileNumber: formData.mobile },
+        name: {
+          title: formData.title,
+          forename: formData.name.forename,
+          surname: formData.name.surname,
+        },
+      })
+        .unwrap()
+        .then((res) => {
+          if (!!offeredUnit?._id) {
+            newBooking({
+              ...formData,
+              unitId: offeredUnit._id,
+              guestId: res.guestId,
+              planDate: new Date(formData.planDate),
+              amount:
+                unit_price[
+                  formData.unitType as "standard" | "double" | "extra"
+                ] * formData.numberOfDays,
+            });
+          }
+        });
     }
   };
 

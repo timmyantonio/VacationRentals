@@ -1,6 +1,6 @@
 {
   "unit_price": {
-    "regular": 2000,
+    "standard": 2000,
     "double": 3500,
     "extra": 4500
   }

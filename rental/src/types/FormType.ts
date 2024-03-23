@@ -8,7 +8,7 @@ export interface FormType {
   numberOfDays: number;
   amount?: number;
   type: "online" | "onsite";
-  unitType: "select" | "regular" | "double" | "extra";
+  unitType: "select" | "standard" | "double" | "extra";
   name: {
     forename: string;
     surname: string;
