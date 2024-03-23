@@ -1,11 +1,10 @@
 import { IFeature } from "./Feature";
 
 export interface IUnit {
-  id: string;
+  _id?: string;
   description: "standard" | "extra" | "double";
   unitNumber: number;
   floorNumber: number;
-  features: IFeature[];
-  cost: number;
-  isOccupied: boolean;
+  feature: IFeature;
+  status: "booked" | "occupied" | "available";
 }

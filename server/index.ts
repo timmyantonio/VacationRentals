@@ -12,6 +12,7 @@ import mongoose from "mongoose";
 import path from "path";
 import payments from "./src/routes/payments";
 import swaggerDocs from "./src/utils/swagger";
+import units from "./src/routes/units";
 import util from "./src/routes/util";
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.use("/api/util", cors(corsOptions), util);
 app.use("/api/guests", cors(corsOptions), guests);
 app.use("/api/bookings", cors(corsOptions), bookings);
 app.use("/api/payments", cors(corsOptions), payments);
+app.use("/api/units", cors(corsOptions), units);
 
 swaggerDocs(app);
 
@@ -61,6 +63,11 @@ app.get("/bookings/*", (req, res) => {
 app.use("/payments", express.static(path.join(__dirname, "payments")));
 app.get("/payments/*", (req, res) => {
   res.sendFile(path.join(__dirname, "/payments/index.html"));
+});
+
+app.use("/units", express.static(path.join(__dirname, "units")));
+app.get("/units/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/units/index.html"));
 });
 
 app.use(express.static(path.join(__dirname, "home")));

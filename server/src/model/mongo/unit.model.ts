@@ -2,24 +2,42 @@ import Feature from "./feature.model";
 import mongoose from "mongoose";
 
 const unitSchema = new mongoose.Schema({
-  id: {
+  _id: {
     type: String,
   },
   description: {
     type: String,
+    required: true,
+    enum: ["standard", "extra", "double"],
   },
   unitNumber: {
     type: Number,
+    required: true,
   },
   floorNumber: {
     type: Number,
+    required: true,
   },
-  features: [Feature],
-  cost: {
-    type: Number,
+  feature: {
+    type: {
+      withAc: {
+        type: Boolean,
+        required: true,
+      },
+      withFridge: {
+        type: Boolean,
+        required: true,
+      },
+      withTv: {
+        type: Boolean,
+        required: true,
+      },
+    },
+    required: true,
   },
-  isOccupied: {
-    type: "Boolean",
+  status: {
+    type: String,
+    enum: ["booked", "occupied", "available"],
   },
 });
 
