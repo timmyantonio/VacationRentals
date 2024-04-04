@@ -4,6 +4,7 @@ import Bookings from "../pages/Bookings";
 import { GuestsPage } from "../pages/Guests";
 import Home from "../pages/Home";
 import Payments from "../pages/Payments";
+import { SuccessPage } from "../pages/Success";
 import { Typography } from "@mui/material";
 import pathConfig from "../route/config.json";
 
@@ -17,6 +18,7 @@ function Routes() {
       <Route path={pathConfig.home} element={<Home />} />
       <Route path={pathConfig.payments} element={<Payments />} />
       <Route path={pathConfig.bookings} element={<Bookings />} />
+      <Route path={pathConfig.success} element={<SuccessPage />} />
       <Route path="*" element={<Navigate to={pathConfig.home} />} />
       <Route path={pathConfig.guests} element={<GuestsPage />} />
       <Route

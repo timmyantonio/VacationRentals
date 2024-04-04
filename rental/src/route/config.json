@@ -7,5 +7,6 @@
   "addUnit": "/add-unit",
   "maintenance": "/maintenance",
   "fallout": "/fallout",
-  "unavailable": "/service-unavailable"
+  "unavailable": "/service-unavailable",
+  "success": "/success"
 }

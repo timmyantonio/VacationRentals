@@ -40,6 +40,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import SearchGuest from "../../../components/SearchGuest";
 import axios from "axios";
 import { unit_price } from "../../../Config/pricing.json";
+import { useGetUnitsByDescriptionAndStatusQuery } from "../../../store/api";
 import { useSetState } from "react-use";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -47,6 +48,24 @@ function NewBooking() {
   const [selectedUnit, setSelectedUnit] = useState<
     "select" | "standard" | "double" | "extra"
   >("select");
+  const {
+    data: units,
+    isLoading,
+    isError,
+  } = useGetUnitsByDescriptionAndStatusQuery(
+    {
+      description: selectedUnit,
+      status: "available",
+    },
+    { skip: selectedUnit === "select" }
+  );
+
+  useEffect(() => {
+    if (!!units) {
+      console.log(units);
+    }
+  }, [units]);
+
   const defaultValues: BookingDetailsFormType = {
     type: "online",
     unitType: "select",
@@ -97,8 +116,7 @@ function NewBooking() {
   const onSubmit = (data: any) => {
     setShowModal(true);
     setFormData((prevVal: BookingDetailsFormType) => ({ ...prevVal, ...data }));
-    //setSelectedUnit("select");
-    //reset(defaultValues);
+   
   };
 
   // useEffect(() => {
@@ -110,9 +128,22 @@ function NewBooking() {
 
   return (
     <>
-      {showModal && (
+      {showModal && units && guest && (
         <PaymentModal
-          formData={formData}
+          bookingData={{
+            amount:
+              selectedUnit !== "select"
+                ? unit_price[selectedUnit] * formData.numberOfDays
+                : 0,
+            guestId: guest._id!,
+            unitId: units[0]._id,
+            numberOfAdults: formData.numberOfAdults,
+            numberOfDays: formData.numberOfDays,
+            numberOfChildren: formData.numberOfAdults,
+            planDate: new Date(formData.planDate),
+            type: formData.type,
+            unitType: formData.unitType as "standard" | "double" | "extra",
+          }}
           setShowModal={setShowModal}
           showModal={showModal}
         />

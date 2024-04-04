@@ -7,7 +7,7 @@ export interface IBooking {
   type: "online" | "onsite";
   agentCode?: number;
   planDate: Date;
-  numberOfDays: Number;
+  numberOfDays: number;
   checkInDate?: Date;
   checkOutDate?: Date;
   numberOfAdults: number;

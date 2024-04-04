@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import NewBooking from "./NewBooking";
 
 function Bookings() {
-  const [selectedOption, setSelectedOption] = useState(2);
+  const [selectedOption, setSelectedOption] = useState(1);
 
   const OnNewClick = () => {
     setSelectedOption(1);

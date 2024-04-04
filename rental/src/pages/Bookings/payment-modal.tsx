@@ -17,68 +17,37 @@ import {
   useUnitsQuery,
 } from "../../store/api";
 
-import { FormType } from "../../types/GuestDetailsFormType";
+import { IBooking } from "../../types/Booking";
 import Modal from "../../components/Modal";
 import { NumericFormat } from "react-number-format";
 import ProcessIcon from "@mui/icons-material/Publish";
-import { unit_price } from "../../Config/pricing.json";
+import Spinner from "../../components/Spinner";
+import { useNavigate } from "react-router-dom";
 
 function PaymentModal({
-  formData,
+  bookingData,
   setShowModal,
   showModal,
 }: {
-  formData: FormType;
+  bookingData: IBooking & { unitType: "standard" | "double" | "extra" };
   setShowModal: (value: boolean) => void;
   showModal: boolean;
 }) {
   const [newBooking, bookingResult] = useNewBookingMutation();
-  const [newGuest, newGuestResult] = useNewGuestMutation();
-  const {
-    data: allUnits,
-    isLoading: unitDataLoading,
-    error: unitError,
-  } = useUnitsQuery();
-
-  const offeredUnit = allUnits?.find(
-    (u) => u.status === "available" && u.description === formData.unitType
-  );
+  const navigate = useNavigate();
   const [selectedPaymentOption, setSelectedPaymentOption] = useState("now");
   const [paymentReference, setPaymentReference] = useState("");
-  const [guestId, setGuestId] = useState("");
   const [error, setError] = useState(false);
   const handleProcess = () => {
     if (selectedPaymentOption === "now" && paymentReference.trim() == "") {
       setError(true);
     } else {
       setError(false);
-      console.log("Processing!");
-      console.log(formData);
-
-      newGuest({
-        ...formData,
-        joinedDate: new Date(),
-        contact: { mobileNumber: formData.mobile },
-        name: {
-          title: formData.title,
-          forename: formData.name.forename,
-          surname: formData.name.surname,
-        },
-      })
+      newBooking({ ...bookingData })
         .unwrap()
         .then((res) => {
-          if (!!offeredUnit?._id) {
-            newBooking({
-              ...formData,
-              unitId: offeredUnit._id,
-              guestId: res.guestId,
-              planDate: new Date(formData.planDate),
-              amount:
-                unit_price[
-                  formData.unitType as "standard" | "double" | "extra"
-                ] * formData.numberOfDays,
-            });
-          }
+          res.bookingId && setShowModal(false);
+          navigate("/success", { state: { message: "Booking Successful!" } });
         });
     }
   };
@@ -96,6 +65,7 @@ function PaymentModal({
       onClose={() => setShowModal(false)}
     >
       <>
+        {bookingResult.isLoading && <Spinner />}
         <NumericFormat
           size="small"
           label={<Typography variant="h5">Total Amount</Typography>}
@@ -110,11 +80,7 @@ function PaymentModal({
               },
             },
           }}
-          value={
-            formData.unitType !== "select"
-              ? unit_price[formData.unitType] * formData.numberOfDays
-              : null
-          }
+          value={bookingData.amount}
           prefix="₱"
           thousandSeparator
           sx={{ textAlign: "center" }}

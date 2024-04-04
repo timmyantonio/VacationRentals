@@ -22,6 +22,18 @@ export const api = createApi({
     guestByMobileNumber: build.query<IGuest, string>({
       query: (mobile) => `/guests/mobile/${mobile}`,
     }),
+    getUnitsByDescriptionAndStatus: build.query<
+      IUnit[],
+      { description: string; status: string }
+    >({
+      query: ({ description, status }) => {
+        return {
+          url: "units/",
+          params: { description, status },
+        };
+      },
+      providesTags: ["Units"],
+    }),
     // guestByMobileParams: build.query<IGuest, { mobile: string }>({
     //   query: ({ mobile }) => {
     //     return {
@@ -63,4 +75,5 @@ export const {
   useNewGuestMutation,
   useGuestByMobileNumberQuery,
   useGuestsQuery,
+  useGetUnitsByDescriptionAndStatusQuery,
 } = api;
