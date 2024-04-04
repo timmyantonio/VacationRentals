@@ -1,6 +1,4 @@
-export interface GuestDetailFormType {
-  title: string;
-  mobile: string;
+export interface BookingDetailsFormType {
   agentCode?: number;
   planDate: string;
   numberOfAdults: number;
@@ -9,10 +7,4 @@ export interface GuestDetailFormType {
   amount?: number;
   type: "online" | "onsite";
   unitType: "select" | "standard" | "double" | "extra";
-  name: {
-    forename: string;
-    surname: string;
-    middleName?: string;
-    suffix?: string;
-  };
 }

@@ -49,8 +49,15 @@ export const getAll = async (
   next: NextFunction
 ) => {
   let units;
+  const { description, status } = req.query;
   try {
-    units = await Unit.find().exec();
+    if (!!description && !status) {
+      units = await Unit.find({ description }).exec();
+    } else if (!!description && !!status) {
+      units = await Unit.find({ description, status }).exec();
+    } else {
+      units = await Unit.find().exec();
+    }
     if (units.length < 1) {
       const error = new HttpError("No unit found.", 404);
       return next(error);
