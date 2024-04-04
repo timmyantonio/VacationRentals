@@ -17,7 +17,7 @@ import {
   useUnitsQuery,
 } from "../../store/api";
 
-import { FormType } from "../../types/FormType";
+import { FormType } from "../../types/GuestDetailsFormType";
 import Modal from "../../components/Modal";
 import { NumericFormat } from "react-number-format";
 import ProcessIcon from "@mui/icons-material/Publish";

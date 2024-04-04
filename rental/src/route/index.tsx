@@ -1,6 +1,7 @@
 import { Routes as DomRoutes, Navigate, Route } from "react-router-dom";
 
 import Bookings from "../pages/Bookings";
+import { GuestsPage } from "../pages/Guests";
 import Home from "../pages/Home";
 import Payments from "../pages/Payments";
 import { Typography } from "@mui/material";
@@ -17,10 +18,7 @@ function Routes() {
       <Route path={pathConfig.payments} element={<Payments />} />
       <Route path={pathConfig.bookings} element={<Bookings />} />
       <Route path="*" element={<Navigate to={pathConfig.home} />} />
-      <Route
-        path={pathConfig.guests}
-        element={<Typography variant="h3">Guests Page</Typography>}
-      />
+      <Route path={pathConfig.guests} element={<GuestsPage />} />
       <Route
         path={pathConfig.maintenance}
         element={<Typography variant="h3">Maintenance Page</Typography>}

@@ -34,6 +34,36 @@ export const getById = async (
   res.json(guest);
 };
 
+export const getByMobile = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const mobileNumber = req.params.mobileNumber;
+
+  let guest;
+  try {
+    guest = await Guest.findOne({
+      "contact.mobileNumber": mobileNumber,
+    }).exec();
+    if (!guest) {
+      const error = new HttpError("No guest found.", 404);
+      return next(error);
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Error occurred while fetching the guest details.",
+      500,
+      {
+        err,
+      }
+    );
+    return next(error);
+  }
+  res.status(200);
+  res.json(guest);
+};
+
 export const getAll = async (
   req: Request,
   res: Response,

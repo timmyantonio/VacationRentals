@@ -29,7 +29,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { BorderColor } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { FormType } from "../../../types/FormType";
+import { FormType } from "../../../types/GuestDetailsFormType";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Modal from "../../../components/Modal";
 import { NumericFormat } from "react-number-format";

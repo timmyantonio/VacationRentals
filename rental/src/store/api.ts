@@ -9,12 +9,28 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `/api`,
   }),
-  tagTypes: ["Bookings", "Units"],
+  tagTypes: ["Bookings", "Units", "Guests"],
   endpoints: (build) => ({
     bookings: build.query<IBooking[], void>({
       query: () => "/bookings",
       providesTags: ["Bookings"],
     }),
+    guests: build.query<IGuest[], void>({
+      query: () => "/guests",
+      providesTags: ["Guests"],
+    }),
+    guestByMobileNumber: build.query<IGuest, string>({
+      query: (mobile) => `/guests/mobile/${mobile}`,
+    }),
+    // guestByMobileParams: build.query<IGuest, { mobile: string }>({
+    //   query: ({ mobile }) => {
+    //     return {
+    //       url: "guests/",
+    //       params: { mobile },
+    //     };
+    //   },
+    //   providesTags: ["Guests"],
+    // }),
     newBooking: build.mutation<
       { bookingId: string; message: string },
       IBooking
@@ -36,6 +52,7 @@ export const api = createApi({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["Guests"],
     }),
   }),
 });
@@ -44,4 +61,6 @@ export const {
   useNewBookingMutation,
   useUnitsQuery,
   useNewGuestMutation,
+  useGuestByMobileNumberQuery,
+  useGuestsQuery,
 } = api;

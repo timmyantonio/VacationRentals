@@ -1,4 +1,4 @@
-export interface FormType {
+export interface GuestDetailFormType {
   title: string;
   mobile: string;
   agentCode?: number;

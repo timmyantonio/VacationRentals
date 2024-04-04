@@ -1,9 +1,13 @@
 create custom hooks
 check typings
-check how to use redux toolkit mutaion properly
+check how to use redux toolkit mutation properly
 add feature to check if guest already exist
 
 create a hook to create a guest maybe
 create a hook to create a booking maybe 
 
 to update phone number, make sure to check guest valid id first to make sure it genuine or ask for previous stay
+
+add modal when failed to register a guest
+
+handle 500 error on ui
