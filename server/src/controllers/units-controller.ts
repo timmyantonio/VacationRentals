@@ -135,3 +135,25 @@ export const getById = async (
   res.status(200);
   res.json(unit);
 };
+
+export const resetUnits = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await Unit.updateMany({ status: "booked" }, { status: "available" });
+    await Unit.updateMany({ status: "occupied" }, { status: "available" });
+  } catch (err) {
+    const error = new HttpError(
+      "Error occurred while updating unit details.",
+      500,
+      {
+        err,
+      }
+    );
+    return next(error);
+  }
+  res.status(200);
+  res.json({ message: "updated successfully." });
+};

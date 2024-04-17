@@ -1,8 +1,11 @@
 import { NextFunction, Request, Response } from "express";
+import mongoose, { ClientSession } from "mongoose";
 
 import Booking from "../model/mongo/booking.model";
 import { HttpError } from "../model/http-error";
 import { IBooking } from "../types";
+import Unit from "../model/mongo/unit.model";
+import assert from "assert";
 import { nanoid } from "nanoid";
 import { validationResult } from "express-validator";
 
@@ -12,14 +15,28 @@ export const addBooking = async (
   next: NextFunction
 ) => {
   const body = req.body as IBooking;
-
   let newBooking;
+
+  const session: ClientSession = await mongoose.startSession();
+
+  session.startTransaction();
+
   try {
     body._id = nanoid();
     body.status = body.isFullyPaid ? "active" : "pending";
     newBooking = new Booking(body);
-    await newBooking.save();
+    newBooking.$session();
+    await newBooking.save({ session });
+    const unit = await Unit.findById(body.unitId);
+    unit?.$session();
+    assert.equal(unit?.status, "available");
+    unit!.status = "booked";
+    await unit?.save();
+    res.status(201);
+    res.json({ bookingId: body._id, message: "new booking added." });
+    await session.commitTransaction();
   } catch (err) {
+    await session.abortTransaction();
     const error = new HttpError(
       "Error occurred while adding a new booking",
       500,
@@ -28,9 +45,9 @@ export const addBooking = async (
       }
     );
     return next(error);
+  } finally {
+    session.endSession();
   }
-  res.status(201);
-  res.json({ bookingId: body._id, message: "new booking added." });
 };
 
 export const getAll = async (

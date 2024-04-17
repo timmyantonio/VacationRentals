@@ -2,6 +2,7 @@ import {
   getAll,
   getById,
   registerUnit,
+  resetUnits,
   updateUnit,
 } from "../controllers/units-controller";
 
@@ -15,3 +16,4 @@ router.get("/", getAll);
 router.get("/:_id", getById);
 router.post("/", registerUnit);
 router.patch("/:_id", updateUnit);
+router.patch("/", resetUnits);

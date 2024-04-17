@@ -18,7 +18,8 @@ const bookingSchema = new mongoose.Schema({
     enum: ["online", "onsite"],
   },
   agentCode: Number,
-  planDate: { required: true, type: Date },
+  startDate: { required: true, type: Date },
+  endDate: { required: true, type: Date },
   numberOfDays: {
     type: Number,
     required: true,

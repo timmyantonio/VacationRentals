@@ -8,5 +8,6 @@
   "maintenance": "/maintenance",
   "fallout": "/fallout",
   "unavailable": "/service-unavailable",
-  "success": "/success"
+  "success": "/success",
+  "test": "/test"
 }
