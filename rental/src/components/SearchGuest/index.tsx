@@ -12,6 +12,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Spinner from "../Spinner";
 import { format } from "date-fns";
 import { useGuestsQuery } from "../../store/api";
+import { useLocation } from "react-router-dom";
 
 export const SearchGuest = ({
   setGuest,
@@ -19,7 +20,7 @@ export const SearchGuest = ({
   setGuest: (value: IGuest | null) => void;
 }) => {
   const { data: guestsData, isLoading } = useGuestsQuery();
-
+  const location = useLocation();
   const theme = useTheme();
 
   return (
@@ -27,6 +28,7 @@ export const SearchGuest = ({
       {isLoading && <Spinner />}
       {guestsData && (
         <Autocomplete
+          defaultValue={location.state?.guest}
           size="small"
           id="search-guest-combo"
           onChange={(e, value, reason) => {

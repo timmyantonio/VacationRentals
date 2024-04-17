@@ -44,10 +44,24 @@ import axios from "axios";
 import { formatDate } from "date-fns/format";
 import { unit_price } from "../../../Config/pricing.json";
 import { useGetUnitsByDescriptionAndStatusQuery } from "../../../store/api";
+import { useLocation } from "react-router-dom";
 import { useSetState } from "react-use";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+const defaultValues: BookingDetailsFormType = {
+  type: "online",
+  unitType: "select",
+  startDate: "",
+  endDate: "",
+  numberOfAdults: 0,
+  numberOfChildren: 0,
+};
 function NewBooking() {
+  const location = useLocation();
+  const [guest, setGuest] = useState<IGuest | null>();
+  const [formData, setFormData] =
+    useState<BookingDetailsFormType>(defaultValues);
+  const [showModal, setShowModal] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState<IUnit | null>();
   const [selectedUnitType, setSelectedUnitType] = useState<
     "select" | "standard" | "double" | "extra"
@@ -65,19 +79,14 @@ function NewBooking() {
   );
 
   useEffect(() => {
+    setGuest(location.state?.guest);
+  }, []);
+
+  useEffect(() => {
     if (!!units) {
       setSelectedUnit(units[0]);
     }
   }, [units, selectedUnitType]);
-
-  const defaultValues: BookingDetailsFormType = {
-    type: "online",
-    unitType: "select",
-    startDate: "",
-    endDate: "",
-    numberOfAdults: 0,
-    numberOfChildren: 0,
-  };
 
   const schema = yup.object().shape({
     type: yup
@@ -110,11 +119,8 @@ function NewBooking() {
     mode: "onTouched",
     resolver: yupResolver(schema),
   });
-  const [guest, setGuest] = useState<IGuest | null>();
-  const [formData, setFormData] =
-    useState<BookingDetailsFormType>(defaultValues);
-  const [showModal, setShowModal] = useState(false);
-  const onSubmit = (data: any) => {   
+
+  const onSubmit = (data: any) => {
     setShowModal(true);
     setFormData((prevVal: BookingDetailsFormType) => ({ ...prevVal, ...data }));
   };

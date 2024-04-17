@@ -11,6 +11,7 @@ import React, { useState } from "react";
 
 import { IGuest } from "../../types/Guest";
 import Modal from ".";
+import { useNavigate } from "react-router-dom";
 
 export const GuestExistModal = ({
   guest,
@@ -21,6 +22,7 @@ export const GuestExistModal = ({
   setShowModal: (value: boolean) => void;
   showModal: boolean;
 }) => {
+  const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
 
   return (
@@ -68,7 +70,15 @@ export const GuestExistModal = ({
           </Box>
           {verified && (
             <Box textAlign="center">
-              <Link href="/bookings">Click here to continue booking</Link>
+              {/* <Link href="/bookings">Click here to continue booking</Link> */}
+              <Button
+                onClick={() =>
+                  navigate("/bookings", { state: { guest: guest } })
+                }
+                sx={{ textTransform: "none" }}
+              >
+                Click here to continue booking
+              </Button>
             </Box>
           )}
           <Box textAlign="right">
