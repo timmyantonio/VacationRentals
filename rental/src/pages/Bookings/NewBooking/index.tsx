@@ -114,9 +114,7 @@ function NewBooking() {
   const [formData, setFormData] =
     useState<BookingDetailsFormType>(defaultValues);
   const [showModal, setShowModal] = useState(false);
-  const onSubmit = (data: any) => {
-    console.log("Hit!!!");
-    console.log(data);
+  const onSubmit = (data: any) => {   
     setShowModal(true);
     setFormData((prevVal: BookingDetailsFormType) => ({ ...prevVal, ...data }));
   };
@@ -185,6 +183,7 @@ function NewBooking() {
                           onChange={(date) => {
                             field.onChange(date);
                             setEndDate(null);
+                            resetField("endDate");
                             setStartDate(date);
                           }}
                           placeholderText="Start date"
@@ -242,15 +241,9 @@ function NewBooking() {
                             <TextField
                               fullWidth
                               disabled
-                              error={
-                                !!errors.endDate || (!endDate && !!startDate)
-                              }
+                              error={!!errors.endDate}
                               helperText={
-                                errors.endDate
-                                  ? errors.endDate.message
-                                  : !endDate && !!startDate
-                                  ? "This field is required."
-                                  : null
+                                errors.endDate ? errors.endDate.message : null
                               }
                               size="small"
                               inputProps={{
