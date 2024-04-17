@@ -9,5 +9,6 @@
   "fallout": "/fallout",
   "unavailable": "/service-unavailable",
   "success": "/success",
+  "error": "/error",
   "test": "/test"
 }

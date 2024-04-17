@@ -38,6 +38,7 @@ function PaymentModal({
   const [selectedPaymentOption, setSelectedPaymentOption] = useState("now");
   const [paymentReference, setPaymentReference] = useState("");
   const [error, setError] = useState(false);
+
   const handleProcess = () => {
     if (selectedPaymentOption === "now" && paymentReference.trim() == "") {
       setError(true);
@@ -46,8 +47,16 @@ function PaymentModal({
       newBooking({ ...bookingData })
         .unwrap()
         .then((res) => {
-          res.bookingId && setShowModal(false);
-          navigate("/success", { state: { message: "Booking Successful!" } });
+          if (res.bookingId) {
+            setShowModal(false);
+            navigate("/success", { state: { message: "Booking Successful!" } });
+          }
+        })
+        .catch(() => {
+          setShowModal(false);
+          navigate("/error", {
+            state: { message: "Booking error! Please try again." },
+          });
         });
     }
   };

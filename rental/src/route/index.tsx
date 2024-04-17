@@ -1,6 +1,7 @@
 import { Routes as DomRoutes, Navigate, Route } from "react-router-dom";
 
 import Bookings from "../pages/Bookings";
+import { ErrorPage } from "../pages/Error";
 import { GuestsPage } from "../pages/Guests";
 import Home from "../pages/Home";
 import Payments from "../pages/Payments";
@@ -21,6 +22,7 @@ function Routes() {
       <Route path={pathConfig.payments} element={<Payments />} />
       <Route path={pathConfig.bookings} element={<Bookings />} />
       <Route path={pathConfig.success} element={<SuccessPage />} />
+      <Route path={pathConfig.error} element={<ErrorPage />} />
       <Route path="*" element={<Navigate to={pathConfig.home} />} />
       <Route path={pathConfig.guests} element={<GuestsPage />} />
       <Route
