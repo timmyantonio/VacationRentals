@@ -55,6 +55,8 @@ export const getAll = async (
       units = await Unit.find({ description }).exec();
     } else if (!!description && !!status) {
       units = await Unit.find({ description, status }).exec();
+    } else if (!description && !!status) {
+      units = await Unit.find({ status }).exec();
     } else {
       units = await Unit.find().exec();
     }
@@ -142,8 +144,7 @@ export const resetUnits = async (
   next: NextFunction
 ) => {
   try {
-    await Unit.updateMany({ status: "booked" }, { status: "available" });
-    await Unit.updateMany({ status: "occupied" }, { status: "available" });
+    await Unit.updateMany({ status: "available" });
   } catch (err) {
     const error = new HttpError(
       "Error occurred while updating unit details.",
