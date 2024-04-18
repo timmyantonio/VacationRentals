@@ -36,14 +36,21 @@ export const GuestExistModal = ({
     >
       <>
         <Stack justifyContent="center" spacing={1}>
-          <Typography textAlign="center" letterSpacing={1} fontWeight={600}>
+          <Typography
+            textAlign="center"
+            variant="h5"
+            letterSpacing={2}
+            fontWeight={600}
+          >
             {guest?.contact.mobileNumber}
           </Typography>
           <Typography
             letterSpacing={1}
             textAlign="center"
           >{` is registered to ${guest?.name.forename.toUpperCase()} ${
-            guest?.name.middleName ?? ""
+            guest?.name.middleName
+              ? guest?.name.middleName[0].toUpperCase() + "."
+              : ""
           } ${guest?.name.surname.toUpperCase()} ${
             guest?.name.suffix ?? ""
           }`}</Typography>
@@ -77,7 +84,9 @@ export const GuestExistModal = ({
                 }
                 sx={{ textTransform: "none" }}
               >
-                Click here to continue booking
+                <Typography variant="h6">
+                  Click here to continue booking
+                </Typography>
               </Button>
             </Box>
           )}

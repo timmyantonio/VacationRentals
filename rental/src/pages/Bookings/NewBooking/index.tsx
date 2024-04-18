@@ -509,7 +509,10 @@ function NewBooking() {
                           >
                             {[...Array(28).keys()].map((index: number) => {
                               return (
-                                <MenuItem value={index}>
+                                <MenuItem
+                                  key={`num-adults-${index}`}
+                                  value={index}
+                                >
                                   <Typography
                                     fontWeight={800}
                                     textAlign="center"
@@ -573,7 +576,10 @@ function NewBooking() {
                           >
                             {[...Array(28).keys()].map((index: number) => {
                               return (
-                                <MenuItem value={index}>
+                                <MenuItem
+                                  key={`num-children-${index}`}
+                                  value={index}
+                                >
                                   <Typography
                                     fontWeight={800}
                                     textAlign="center"
