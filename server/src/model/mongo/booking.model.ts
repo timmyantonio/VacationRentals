@@ -4,13 +4,15 @@ const bookingSchema = new mongoose.Schema({
   _id: {
     type: String,
   },
-  guestId: {
+  guest: {
     type: String,
     required: true,
+    ref: "Guest",
   },
-  unitId: {
+  unit: {
     type: String,
     required: true,
+    ref: "Unit",
   },
   type: {
     type: String,
@@ -18,6 +20,7 @@ const bookingSchema = new mongoose.Schema({
     enum: ["online", "onsite"],
   },
   agentCode: Number,
+  bookingDate: { required: true, type: Date },
   startDate: { required: true, type: Date },
   endDate: { required: true, type: Date },
   numberOfDays: {

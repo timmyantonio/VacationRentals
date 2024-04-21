@@ -144,8 +144,8 @@ function NewBooking() {
                 ? unit_price[selectedUnitType] *
                   differenceInDays(endDate, startDate!)
                 : 0,
-            guestId: guest._id!,
-            unitId: selectedUnit._id,
+            guest: guest._id!,
+            unit: selectedUnit._id,
             numberOfAdults: formData.numberOfAdults,
             numberOfDays: differenceInDays(endDate!, startDate!),
             numberOfChildren: formData.numberOfAdults,

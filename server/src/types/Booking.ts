@@ -3,9 +3,10 @@ import { IPayment } from "./Payment";
 
 export interface IBooking {
   _id: string;
-  guestId: string;
-  unitId: string;
-  type: "online" | "onsite";
+  guest: string;
+  unit: string;
+  bookingType: "online" | "onsite";
+  bookingDate: Date;
   agentCode?: number;
   startDate: Date;
   endDate: Date;

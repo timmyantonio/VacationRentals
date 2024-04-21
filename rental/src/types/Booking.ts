@@ -2,10 +2,11 @@ import { IAddOn } from "./AddOn";
 
 export interface IBooking {
   _id?: string;
-  guestId: string;
-  unitId?: string;
+  guest: string;
+  unit?: string;
   type: "online" | "onsite";
   agentCode?: number;
+  bookingDate: Date;
   startDate: Date;
   endDate: Date;
   numberOfDays: number;

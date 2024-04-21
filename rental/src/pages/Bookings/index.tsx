@@ -4,6 +4,7 @@ import "../Bookings/payment-modal.css";
 import { Box, Button, ButtonGroup, Divider, Typography } from "@mui/material";
 import React, { useState } from "react";
 
+import { BookingList } from "./BookingList";
 import NewBooking from "./NewBooking";
 
 function Bookings() {
@@ -82,7 +83,17 @@ function Bookings() {
           </Button>
         </ButtonGroup>
       </Box>
-      {selectedOption == 1 && <NewBooking />}
+      {selectedOption == 1 ? (
+        <NewBooking />
+      ) : selectedOption == 2 ? (
+        <BookingList label="Pending Bookings" />
+      ) : selectedOption == 3 ? (
+        <BookingList label="Active Bookings" />
+      ) : selectedOption == 4 ? (
+        <BookingList label="Completed Bookings" />
+      ) : selectedOption == 5 ? (
+        <BookingList label="Cancelled Bookings" />
+      ) : null}
     </>
   );
 }

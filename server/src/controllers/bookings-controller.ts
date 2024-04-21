@@ -23,11 +23,12 @@ export const addBooking = async (
 
   try {
     body._id = nanoid();
+    body.bookingDate = new Date();
     body.status = body.isFullyPaid ? "active" : "pending";
     newBooking = new Booking(body);
     newBooking.$session();
     await newBooking.save({ session });
-    const unit = await Unit.findById(body.unitId);
+    const unit = await Unit.findById(body.unit);
     unit?.$session();
     assert.equal(unit?.status, "available");
     unit!.status = "booked";
@@ -57,7 +58,8 @@ export const getAll = async (
 ) => {
   let bookings;
   try {
-    bookings = await Booking.find().exec();
+    bookings = await Booking.find().populate("guest").populate("unit");
+
     if (bookings.length < 1) {
       const error = new HttpError("No booking found.", 404);
       return next(error);
